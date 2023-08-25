@@ -37,19 +37,6 @@ async def connect_to_collection(my_db, collection_name):
         return my_collection
 
 
-async def add_to_collection(my_collection, data):
-    if type(data) is dict:
-        await my_collection.insert_one(data)
-    elif type(data) is list:
-        await my_collection.insert_many(data)
-
-
-async def read_from_collection(my_collection):
-
-    async for x in my_collection.find():
-        print(x)
-
-
 async def connection(database_name, collection_name):
     global collection_status, my_collection
     ping_status, client = await ping_server()
